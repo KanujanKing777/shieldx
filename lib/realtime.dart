@@ -18,11 +18,9 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 
   Future<void> _initLocationTracking() async {
-    // Request permission to access location
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
 
-    // Check if location services are enabled
     _serviceEnabled = await _location.serviceEnabled();
     if (!_serviceEnabled) {
       _serviceEnabled = await _location.requestService();
@@ -31,7 +29,6 @@ class _LocationScreenState extends State<LocationScreen> {
       }
     }
 
-    // Check for location permission
     _permissionGranted = await _location.hasPermission();
     if (_permissionGranted == PermissionStatus.denied) {
       _permissionGranted = await _location.requestPermission();
@@ -40,16 +37,14 @@ class _LocationScreenState extends State<LocationScreen> {
       }
     }
 
-    // Listen for real-time location changes
     _location.onLocationChanged.listen((LocationData locationData) {
       setState(() {
         _currentLocation = locationData;
       });
     });
   }
-// default constructor
  MapController controller = MapController(
-                            initPosition: GeoPoint(latitude: 47.4358055, longitude: 8.4737324),
+                            initPosition: GeoPoint(latitude: 9.66656, longitude: 80.0456704),
                             areaLimit: BoundingBox( 
                                 east: 10.4922941, 
                                 north: 47.8084648, 
@@ -58,24 +53,19 @@ class _LocationScreenState extends State<LocationScreen> {
                       ),
             );
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Real-time Location Tracker'),
-      ),
+      
       body: Center(
         child: _currentLocation == null
             ? Text('Getting location...')
             : Column(
               children: [
-                Text(
-                  'Latitude: ${_currentLocation!.latitude}\nLongitude: ${_currentLocation!.longitude}',
-                  textAlign: TextAlign.center,
-                ),
+                // Text(
+                //   'Latitude: ${_currentLocation!.latitude}\nLongitude: ${_currentLocation!.longitude}',
+                //   textAlign: TextAlign.center,
+                // ),
                 Expanded(child: 
                 OSMFlutter( 
         controller:controller,
@@ -122,5 +112,11 @@ class _LocationScreenState extends State<LocationScreen> {
               ])
       ),
     );
+  }
+  
+  @override
+    void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

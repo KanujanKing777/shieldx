@@ -10,7 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
 import 'package:shieldxworking/realtime.dart';
 import 'package:shieldxworking/loginpage.dart';
-
+import 'package:shieldxworking/helper.dart';
 
 User? user;
 void main() async {
@@ -72,6 +72,7 @@ final List<Choice> choices = [
     Choice(title: 'Theft/Terrorist', icon: Icons.local_police),
     Choice(title: 'Others', icon: Icons.other_houses),
   ];
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -153,6 +154,8 @@ class Choice {
   final String title;
   final IconData icon;
 }
+List<String> problems = ["Drowning", "Choking", "Heart Attack", "Animal Attack", 
+  "Theft/Terrorist", "Others"];
 void _showPopup(BuildContext context, index) {
     showDialog(
       context: context,
@@ -178,6 +181,12 @@ void _showPopup(BuildContext context, index) {
               child: Text('Experts/People nearby'),
               onPressed: () {
                 Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DataScreen(problem: problems[index]),
+                  ),
+                );
                 showDialog(
                   context:context,
                   builder:(BuildContext context) {

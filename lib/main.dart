@@ -11,6 +11,8 @@ import 'firebase_options.dart';
 import 'package:shieldxworking/realtime.dart';
 import 'package:shieldxworking/loginpage.dart';
 import 'package:shieldxworking/helper.dart';
+import 'package:shieldxworking/animalattack.dart';
+import 'package:shieldxworking/safewalk.dart';
 
 User? user;
 void main() async {
@@ -116,7 +118,7 @@ final List<Choice> choices = [
     )
       ) 
       : (_currentIndex == 1) ?
-      LocationScreen()
+      SafeWalkScreen()
       : (_currentIndex == 2) ?
       ProfilePage()
       :
@@ -140,10 +142,7 @@ final List<Choice> choices = [
             icon: Icon(Icons.person),
             label: 'Profile',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          )
+          
         ],
       ),
     );
@@ -160,45 +159,89 @@ void _showPopup(BuildContext context, index) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Whom do you want to call'),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Emergency Contact'),
-              onPressed: () {
-                _makeEmergencyCall(1);
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: Text('Ambulence/Hospital nearby'),
-              onPressed: () {
-                _makeEmergencyCall(2);
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: Text('Experts/People nearby'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DataScreen(problem: problems[index]),
-                  ),
-                );
-                showDialog(
-                  context:context,
-                  builder:(BuildContext context) {
-                    return AlertDialog(
-                  title: TextSwitcher(),
-                );
-                
-              });
-              },
-            ),
-          ],
+
+Widget _buildDialogButton(
+  BuildContext context,
+  String label,
+  Color color,
+  VoidCallback onPressed,
+) {
+  return TextButton(
+    child: Text(
+      label,
+      style: TextStyle(
+        color: color,
+        fontSize: 17.0
+      ),
+    ),
+    onPressed: onPressed,
+  );
+}
+
+return AlertDialog(
+  title: Text(
+    'Choose an option below to get assistance',
+    style: TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+      color: Color.fromARGB(255, 205, 205, 205)
+    ),
+  ),
+  backgroundColor: const Color.fromARGB(255, 9, 9, 9),
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(15),
+  ),
+  actions: <Widget>[
+    _buildDialogButton(
+      context,
+      'Emergency Contact',
+      const Color.fromARGB(255, 248, 124, 116),
+      () {
+        _makeEmergencyCall(1);
+        Navigator.of(context).pop();
+      },
+    ),
+    _buildDialogButton(
+      context,
+      'Ambulance/Hospital Nearby',
+      const Color.fromARGB(255, 108, 184, 247),
+      () {
+        _makeEmergencyCall(2);
+        Navigator.of(context).pop();
+      },
+    ),
+    _buildDialogButton(
+      context,
+      'Experts/People Nearby',
+      const Color.fromARGB(255, 141, 249, 145),
+      () {
+        Navigator.of(context).pop();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DataScreen(problem: problems[index]),
+          ),
         );
+      },
+    ),
+    _buildDialogButton(
+      context,
+      'Info for First Aid',
+      const Color.fromARGB(255, 252, 203, 128),
+      () {
+        Navigator.of(context).pop();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AnimalAttackPost(),
+          ),
+        );
+      },
+    ),
+  ],
+);
+
+
       },
     );
   }

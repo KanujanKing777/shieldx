@@ -60,37 +60,79 @@ class _SignUpPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Log In'),
+        backgroundColor: Colors.black.withOpacity(0.8),
       ),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.black, Colors.blueGrey[800]!],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            
-            
+            SizedBox(height: 40),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: "Email"),
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                labelText: "Email",
+                labelStyle: TextStyle(color: Colors.white70),
+                border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.black54,
+                focusColor: Colors.white,
+              ),
             ),
+            SizedBox(height: 16),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: "Password"),
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                labelText: "Password",
+                labelStyle: TextStyle(color: Colors.white70),
+                border: OutlineInputBorder(),
+                filled: true,
+                fillColor: Colors.black54,
+                focusColor: Colors.white,
+              ),
               obscureText: true,
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: _signUp,
-              child: Text("Login"),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blueGrey[800],
+                padding: EdgeInsets.symmetric(vertical: 16),
+              ),
+              child: Text("Login", style: TextStyle(color: Colors.white),),
             ),
             SizedBox(height: 50),
-            Row(children: [Text('New to shieldx, '),
-            ElevatedButton(
-              onPressed: _signUp2,
-              child: Text("Signup"),
-            ),],),
+            Row(
+              children: [
+                Text(
+                  'New to ShieldX? ',
+                  style: TextStyle(color: Colors.white),
+                ),
+                ElevatedButton(
+                  onPressed: _signUp2,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blueGrey[600],
+                  ),
+                  child: Text("Signup", style: TextStyle(color: Colors.white),),
+                ),
+              ],
+            ),
             if (_errorMessage.isNotEmpty)
-              Text(
-                _errorMessage,
-                style: TextStyle(color: Colors.red),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: Text(
+                  _errorMessage,
+                  style: TextStyle(color: Colors.red, fontSize: 16),
+                ),
               ),
           ],
         ),

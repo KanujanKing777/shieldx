@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
+
 class LocationService {
   // Singleton pattern (optional) for easy access
   static final LocationService _instance = LocationService._internal();
-  
+
   factory LocationService() {
     return _instance;
   }
@@ -28,7 +29,6 @@ class LocationService {
       }
 
       if (permission == LocationPermission.deniedForever) {
-        // Permissions are permanently denied
         return [0.0, 0.0];
       }
 

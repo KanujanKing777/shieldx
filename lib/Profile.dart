@@ -1,13 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:shieldxworking/latlong.dart';
 import 'package:shieldxworking/main.dart';
 
 
 class ProfilePage extends StatefulWidget {
+  
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+    List<double> _location = [0.0, 0.0];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchLocation();
+  }
+
+  Future<void> _fetchLocation() async {
+    // Access the LocationService instance
+    LocationService locationService = LocationService(); // Singleton instance
+    List<double> location = await locationService.getCurrentLocation();
+    setState(() {
+      _location = location;
+    });
+  }
+  bool _showProfile = false;
+  bool _accessLocation = false;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -47,18 +68,18 @@ class _ProfilePageState extends State<ProfilePage> {
               subtitle: TextField(
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              hintText: '${user?.displayName?.split(' ')[1]}',
+              hintText: '${user?.displayName?.split(' ').last}',
             ),
             keyboardType: TextInputType.number,
           ),
             ),
             ListTile(
               leading: Icon(Icons.location_city),
-              title: Text('Address'),
+              title: Text('Location'),
               subtitle: TextField(
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              hintText: 'Realtime location',
+              hintText: '$_location',
             ),
             keyboardType: TextInputType.number,
             readOnly: true,
@@ -75,6 +96,28 @@ class _ProfilePageState extends State<ProfilePage> {
             keyboardType: TextInputType.text,
           ),
             ),
+            CheckboxListTile(
+            title: Text('Show My Profile'),
+            value: _showProfile,
+            onChanged: (bool? value) {
+              setState(() {
+                _showProfile = value ?? false;
+              });
+            },
+          ),
+          Divider(),
+          // Access Location
+          CheckboxListTile(
+            title: Text('Access Location'),
+            value: _accessLocation,
+            onChanged: (bool? value) {
+              setState(() {
+                _accessLocation = value ?? false;
+              });
+            },
+          ),
+          Divider(),
+          
             ElevatedButton(
       onPressed: () {
         // Define what happens when the button is pressed

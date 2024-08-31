@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shieldxworking/signuppage.dart';
-import 'package:shieldxworking/textswitcher.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shieldxworking/Profile.dart';
@@ -28,7 +27,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

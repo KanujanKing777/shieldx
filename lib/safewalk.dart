@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:flutter_map/flutter_map.dart'; // Import flutter_map
-import 'package:latlong2/latlong.dart' as latlng; // Import latlong2 for coordinates
+import 'package:flutter_map/flutter_map.dart'; 
+import 'package:latlong2/latlong.dart' as latlng; 
 
 void main() {
   runApp(SafeWalkApp());
@@ -43,7 +43,6 @@ class _SafeWalkScreenState extends State<SafeWalkScreen> {
   }
 
   void _shareLocationWithContacts() {
-    // Your logic to share location with selected contacts
     print('Sharing location with contacts...');
   }
 

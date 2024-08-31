@@ -17,9 +17,9 @@ class _DataScreenState extends State<DataScreen>
   late final Future<List<double>> data;
   late AnimationController _controller;
   late Animation<double> _animation;
-  bool _isSendingData = true; // Flag to manage state of data sending
-  bool _isSearching = false; // Flag for searching
-  bool _peopleFound = false; // Flag to indicate people were found
+  bool _isSendingData = true; 
+  bool _isSearching = false; 
+  bool _peopleFound = false; 
 
   @override
   void initState() {
@@ -27,7 +27,6 @@ class _DataScreenState extends State<DataScreen>
     data = LocationService().getCurrentLocation();
     _sendData();
 
-    // Initialize animation controller
     _controller = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
@@ -57,7 +56,7 @@ class _DataScreenState extends State<DataScreen>
     }).then((_) {
       print("Data sent successfully!");
       setState(() {
-        _isSendingData = false; // Stop animation once data is sent
+        _isSendingData = false; 
         _searchForNearbyPeople(); // Start searching for people nearby
       });
     }).catchError((error) {
@@ -70,7 +69,7 @@ class _DataScreenState extends State<DataScreen>
 
   void _searchForNearbyPeople() async {
     setState(() {
-      _isSearching = true; // Start searching
+      _isSearching = true; 
     });
 
     // Extract the latitude and longitude from user's current location
@@ -102,12 +101,12 @@ class _DataScreenState extends State<DataScreen>
         }
       }
       setState(() {
-        _isSearching = false; // Stop searching
+        _isSearching = false; 
       });
     }).catchError((error) {
       print("Error searching for nearby people: $error");
       setState(() {
-        _isSearching = false; // Stop searching on error
+        _isSearching = false; 
       });
     });
   }
@@ -120,7 +119,7 @@ class _DataScreenState extends State<DataScreen>
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context); // Navigates back to the previous page
+            Navigator.pop(context); 
           },
         ),
       ),

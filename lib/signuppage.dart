@@ -33,7 +33,6 @@ class _SignUpPageState extends State<SignUpPage> {
       user = userCredential.user;
       user?.updateDisplayName(_nameController.text + ' ' + _emergency.text);     
       user?.updatePhotoURL(_professionController.text);
-      // Sign-up successful
       print("User signed up: ${userCredential.user?.email}");
     
       Navigator.push(

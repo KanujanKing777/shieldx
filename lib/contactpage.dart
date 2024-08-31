@@ -18,15 +18,12 @@ class _ContactListPageState extends State<ContactListPage> {
   }
 
   Future<void> _getContacts() async {
-    // Request permission to access contacts
     if (await Permission.contacts.request().isGranted) {
-      // Fetch contacts from the device
       Iterable<Contact> contacts = await ContactsService.getContacts();
       setState(() {
         _contacts = contacts.toList();
       });
     } else {
-      // Handle the situation when permission is denied
       print('Permission denied');
     }
   }

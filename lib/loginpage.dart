@@ -27,7 +27,6 @@ class _SignUpPageState extends State<LoginPage> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      // Sign-up successful
       final prefs = await SharedPreferences.getInstance();
   final loginTime = DateTime.now().toIso8601String();
   await prefs.setString('login_time', loginTime);

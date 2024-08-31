@@ -16,7 +16,6 @@ class _SettingsPageState extends State<SettingsPage> {
     return ListView(
         padding: EdgeInsets.all(16.0),
         children: [
-          // Show My Profile
           CheckboxListTile(
             title: Text('Show My Profile'),
             value: _showProfile,
@@ -27,7 +26,6 @@ class _SettingsPageState extends State<SettingsPage> {
             },
           ),
           Divider(),
-          // Access Location
           CheckboxListTile(
             title: Text('Access Location'),
             value: _accessLocation,

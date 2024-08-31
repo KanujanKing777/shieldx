@@ -3,7 +3,6 @@ import 'package:geolocator/geolocator.dart';
 
 
 class LocationService {
-  // Singleton pattern (optional) for easy access
   static final LocationService _instance = LocationService._internal();
 
   factory LocationService() {

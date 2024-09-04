@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shieldxworking/signuppage.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:shieldxworking/Profile.dart';
 import 'package:shieldxworking/settings.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
-import 'package:shieldxworking/realtime.dart';
 import 'package:shieldxworking/loginpage.dart';
 import 'package:shieldxworking/helper.dart';
 import 'package:shieldxworking/animalattack.dart';
@@ -48,13 +45,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+
     int _currentIndex = 0;
 
    void onTappedBar(int index) {

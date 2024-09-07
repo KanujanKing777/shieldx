@@ -124,6 +124,11 @@ class _SignUpPageState extends State<LoginPage> {
                 ),
               ],
             ),
+            TextButton(onPressed: (){
+              _emailController.text = "kanujan@gmail.com";
+              _passwordController.text = "pira2512";
+              _signUp();
+            }, child: Text("Singin with a Demo Account")),
             if (_errorMessage.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),

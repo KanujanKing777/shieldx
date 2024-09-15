@@ -9,6 +9,7 @@ import 'package:shieldxworking/loginpage.dart';
 import 'package:shieldxworking/helper.dart';
 import 'package:shieldxworking/animalattack.dart';
 import 'package:shieldxworking/safewalk.dart';
+import 'package:shieldxworking/chatbot.dart';
 
 User? user;
 void main() async {
@@ -113,6 +114,16 @@ final List<Choice> choices = [
       ProfilePage()
       :
       Center(child: SettingsPage(),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ChatScreen()),
+          );
+        },
+        child: Icon(Icons.chat),
+        backgroundColor: Colors.blue[700],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.white,
